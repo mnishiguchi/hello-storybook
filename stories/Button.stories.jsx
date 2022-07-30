@@ -1,40 +1,80 @@
-import React from 'react';
+import React from 'react'
+import clsx from 'clsx'
 
-import { Button } from './Button';
-
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Example/Button',
-  component: Button,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
+  title: 'Bootstrap/Button',
+  // https://storybook.js.org/docs/react/api/argtypes#manual-specification
   argTypes: {
-    backgroundColor: { control: 'color' },
-  },
-};
+    color: {
+      control: { type: 'radio' },
+      options: ['primary', 'secondary', 'success', 'info', 'warning', 'danger'],
+      defaultValue: 'danger',
+      description: null,
+      table: {
+        type: {
+          summary: 'btn-*',
+          detail: `
+btn-primary
+btn-secondary
+btn-success
+btn-info
+btn-warning
+btn-danger
+          `
+        }
+      }
+    },
+    outline: {
+      control: { type: 'boolean' },
+      defaultValue: false,
+      description: null,
+      table: {
+        type: {
+          summary: 'btn-outline-*',
+          detail: `
+btn-outline-primary
+btn-outline-secondary
+btn-outline-success
+btn-outline-info
+btn-outline-warning
+btn-outline-danger
+          `
+        }
+      }
+    },
+    size: {
+      control: { type: 'radio' },
+      options: ['small', 'medium', 'large'],
+      defaultValue: 'small',
+      description: null,
+      table: {
+        type: {
+          summary: 'btn-*',
+          detail: `
+btn-sm
+btn-lg
+          `
+        }
+      }
+    }
+  }
+}
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template = (args) => <Button {...args} />;
+function Template({ color, size, outline }) {
+  return (
+    <button
+      className={clsx([
+        'btn',
+        [outline ? `btn-outline-${color}` : `btn-${color}`],
+        [size === 'small' && 'btn-sm'],
+        [size === 'medium' && ''],
+        [size === 'large' && 'btn-lg']
+      ])}
+    >
+      OK
+    </button>
+  )
+}
 
-export const Primary = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
-  primary: true,
-  label: 'Button',
-};
-
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: 'Button',
-};
-
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large',
-  label: 'Button',
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
-  label: 'Button',
-};
+export const Example = Template.bind({})
+Example.args = {}
