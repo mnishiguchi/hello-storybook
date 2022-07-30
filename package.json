@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "build.storybook": "build-storybook",
+    "storybook": "start-storybook -p 6006",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.0",
+    "@storybook/addon-actions": "^6.5.0",
+    "@storybook/addon-essentials": "^6.5.0",
+    "@storybook/addon-interactions": "^6.5.0",
+    "@storybook/addon-links": "^6.5.0",
+    "@storybook/builder-webpack4": "^6.5.0",
+    "@storybook/manager-webpack4": "^6.5.0",
+    "@storybook/react": "^6.5.0",
+    "@storybook/testing-library": "^0.0.0",
+    "babel-loader": "^8.2.0"
+  }
+}
